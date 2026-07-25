@@ -1,4 +1,4 @@
-# Multi-Area OSPF Network Lab — Design, Redundancy & Troubleshooting
+# Scalable Multi-Area OSPF Network — Redundancy, Security & Fault Diagnosis
 
 A hands-on OSPF lab built in Cisco Packet Tracer, covering single-area and multi-area design, DR/BDR election, redundant equal-cost paths, authentication, route summarization, and real troubleshooting scenarios diagnosed from scratch.
 
