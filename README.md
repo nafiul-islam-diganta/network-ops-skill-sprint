@@ -3,7 +3,7 @@ Hands-on network engineering labs — OSPF, BGP, MPLS, QoS, and network automati
 
 ## Structure
 
-- `week1-ospf/` — Multi-area OSPF lab: adjacency, DR/BDR election, redundancy/ECMP, authentication, route summarization
+- [`week1-ospf/`](week1-ospf/) — Scalable Multi-Area OSPF Network: redundancy, security & fault diagnosis
 - `week2-bgp/` — coming soon
 - `week3-mpls-qos/` — coming soon
 - `week4-capstone/` — coming soon
