@@ -34,13 +34,13 @@ This project simulates a small multi-router network using OSPF as the routing pr
 ## Verification
 
 **DR/BDR election — three routers, real election result:**
-![DR/BDR Election](DR-BDR_proof.png)
+![DR/BDR Election](DR-BDR%20proof.png)
 
 **ECMP — two equal-cost paths to the same network:**
-![ECMP Routing](ECMP_proof.png)
+![ECMP Routing](ECMP%20proof.png)
 
 **MD5 authentication enabled on an OSPF interface:**
-![MD5 Authentication](Authentication_Proof.png)
+![MD5 Authentication](Authentication%20Proof.png)
 
 - OSPF neighbor state machine (Down → Init → 2-Way → ExStart → Exchange → Loading → Full)
 - Single-area and multi-area (Area 0 + Area 1) configuration
@@ -85,7 +85,7 @@ Every one of these was a real issue hit and independently diagnosed during the b
 | 6 | Neighbor disappeared, identical symptom to #5 | `show ip ospf interface` (compared Area values on both routers) | OSPF area reassigned on one side of a link only | Corrected the `network` statement's area to match on both sides |
 
 **Issue #5 in action — Hello-timer mismatch breaking the adjacency:**
-![Hello Timer Mismatch](Hello_Task_time_breaker.png)
+![Hello Timer Mismatch](Hello%20Task%20time%20breaker.png)
 
 **Key takeaway from the log:** issues #5 and #6 produced an *identical* symptom in `show ip ospf neighbor` (neighbor simply missing) despite having completely different root causes — proving that a single command is rarely enough to diagnose an OSPF adjacency failure. Real troubleshooting requires comparing specific values (timers, area, authentication, MTU) between both ends of a link, not just observing that something is broken.
 
