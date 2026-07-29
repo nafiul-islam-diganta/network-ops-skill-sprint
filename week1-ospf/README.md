@@ -86,6 +86,7 @@ Every one of these was a real issue hit and independently diagnosed during the b
 | 5 | Neighbor disappeared after a timer change | `show ip ospf interface` (compared Hello/Dead values on both routers) | Hello interval manually changed on one router only, breaking the required match with its neighbor | Reverted with `no ip ospf hello-interval` |
 | 6 | Neighbor disappeared, identical symptom to #5 | `show ip ospf interface` (compared Area values on both routers) | OSPF area reassigned on one side of a link only | Corrected the `network` statement's area to match on both sides |
 
+
 **Issue #5 in action — Hello-timer mismatch breaking the adjacency:**
 
 ![Hello Timer Mismatch](Hello%20Task%20time%20breaker.png)
