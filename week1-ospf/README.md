@@ -7,6 +7,7 @@ A hands-on OSPF lab built in Cisco Packet Tracer, covering single-area and multi
 This project simulates a small multi-router network using OSPF as the routing protocol. It was built incrementally over one week, with each stage adding a new layer of real-world complexity — starting from a basic 2-router adjacency and ending with a two-area design featuring redundancy, security, and summarization.
 
 ## Topology
+![Network Topology](Topology.png)
 
 **Area 0 (Backbone):**
 - R1 — R2 — R3 in a triangle (R1-R2, R2-R3, and a direct R1-R3 link)
@@ -30,6 +31,16 @@ This project simulates a small multi-router network using OSPF as the routing pr
 | R4/R5/R6 segment | 10.0.100.0/24 | R4: .1, R5: .2, R6: .3 |
 
 ## Concepts & Skills Demonstrated
+## Verification
+
+**DR/BDR election — three routers, real election result:**
+![DR/BDR Election](DR-BDR_proof.png)
+
+**ECMP — two equal-cost paths to the same network:**
+![ECMP Routing](ECMP_proof.png)
+
+**MD5 authentication enabled on an OSPF interface:**
+![MD5 Authentication](Authentication_Proof.png)
 
 - OSPF neighbor state machine (Down → Init → 2-Way → ExStart → Exchange → Loading → Full)
 - Single-area and multi-area (Area 0 + Area 1) configuration
@@ -72,6 +83,9 @@ Every one of these was a real issue hit and independently diagnosed during the b
 | 4 | Route summarization had no effect on the routing table | `show ip route ospf` | Summary mask typo — used `/24` (`255.255.255.0`) instead of `/22` (`255.255.252.0`), so the range didn't actually cover the target networks | Corrected the mask to `/22` on both ABRs |
 | 5 | Neighbor disappeared after a timer change | `show ip ospf interface` (compared Hello/Dead values on both routers) | Hello interval manually changed on one router only, breaking the required match with its neighbor | Reverted with `no ip ospf hello-interval` |
 | 6 | Neighbor disappeared, identical symptom to #5 | `show ip ospf interface` (compared Area values on both routers) | OSPF area reassigned on one side of a link only | Corrected the `network` statement's area to match on both sides |
+
+**Issue #5 in action — Hello-timer mismatch breaking the adjacency:**
+![Hello Timer Mismatch](Hello_Task_time_breaker.png)
 
 **Key takeaway from the log:** issues #5 and #6 produced an *identical* symptom in `show ip ospf neighbor` (neighbor simply missing) despite having completely different root causes — proving that a single command is rarely enough to diagnose an OSPF adjacency failure. Real troubleshooting requires comparing specific values (timers, area, authentication, MTU) between both ends of a link, not just observing that something is broken.
 
